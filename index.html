@@ -101,9 +101,9 @@
       var l, z, t;
 
       // get longitude
-      if(MODE == 'LONG') {
+      if(MODE === 'LONG') {
         l = elem('input').value;
-      } else if(MODE == 'ZIP') {
+      } else if(MODE === 'ZIP') {
         z = elem('input').value;
         l = zip_longitude[z];
       } else {
@@ -122,10 +122,10 @@
 
     function switch_mode(m) {
       MODE = m;
-      if(m == 'LONG') {
+      if(m === 'LONG') {
         elem('deg').style.color = 'black';
         setLong();
-      } else if(m == 'ZIP') {
+      } else if(m === 'ZIP') {
         elem('deg').style.color = 'white';
         elem('input').value = defaults.ZIP;
       } else {
