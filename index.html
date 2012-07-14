@@ -62,6 +62,10 @@
 
     var MODE;
     var hour_ms = 1000 * 60 * 60; // millis in an hour
+    var defaults = {
+      ZIP: '92093',
+      LONG: '-117'
+    }
 
     function elem(id) {
       return document.getElementById(id);
@@ -89,7 +93,7 @@
       }
 
       function useDefault(e) {
-        elem('input').value = -117;
+        elem('input').value = defaults.LONG;
       }
     }
 
@@ -123,7 +127,7 @@
         setLong();
       } else if(m == 'ZIP') {
         elem('deg').style.color = 'white';
-        elem('input').value = 92093;
+        elem('input').value = defaults.ZIP;
       } else {
         error('BAD MODE');
       }
