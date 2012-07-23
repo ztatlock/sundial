@@ -12,10 +12,26 @@
     is <span id='clock'></span>
   </h1>
   <br />
-  <button type='button' class='mode-switch'
+  <button type='button' class='control'
     onclick='switch_mode("LONG")'>Longitude</button>
-  <button type='button' class='mode-switch'
+  <button type='button' class='control'
     onclick='switch_mode("ZIP")'>ZIP</button>
+  <button type='button' class='control'
+    onclick='toggle_huh()'>Huh?</button>
+  <div id='huh' style='visibility: hidden;'><p>
+
+    Wall time already depends crudely on geographic location via timezone.
+    However, unless you're right in the middle of your timezone, time isn't
+    quite right for you, i.e. the sun isn't directly overhead at noon.
+
+  </p><p>
+
+    If we had 48 timezones instead of 24, the average error would be
+    greatly reduced. 96 would be even better, and so on. If you continue
+    down this path, you eventually just compute wall time as a function of
+    UTC and longitude which is what this webpage does.
+
+  </p></div>
   <script>
     'use strict';
 
@@ -91,6 +107,15 @@
         error('BAD MODE');
       }
       show();
+    }
+
+    function toggle_huh() {
+      var s = elem('huh').style;
+      if(s.visibility === 'hidden') {
+        s.visibility = 'visible';
+      } else {
+        s.visibility = 'hidden';
+      }
     }
 
     function error(msg) {

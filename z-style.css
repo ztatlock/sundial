@@ -20,9 +20,15 @@ h1 {
   cursor: pointer;
 }
 
-.mode-switch {
+.control {
   font-size: 16pt;
   padding: 5px;
   margin: 10px;
   width: 150px;
+}
+
+#huh {
+  width: 800px;
+  text-align: left;
+  margin: 20px auto;
 }
