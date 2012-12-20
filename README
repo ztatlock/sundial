@@ -1,2 +1,6 @@
-See what time should be for a given longitude or ZIP:
-  http://cseweb.ucsd.edu/~ztatlock/continuous-time
+Compute true solar time using longitude/ZIP to get proper offset from UTC.
+
+Serves as a simple example of browswer geolocatoin services.
+
+Check it out!
+  http://cseweb.ucsd.edu/~ztatlock/sundial

@@ -1,13 +1,13 @@
 <html>
 <head>
-  <title>Continuous Time</title>
+  <title>Sundial</title>
   <script src='sprintf.js'></script>
   <script src='zip-longitude.js'></script>
   <link rel='stylesheet' type='text/css' href='z-style.css' />
 </head>
 <body>
   <h1>
-    Continuous time at
+    True solar time at
     <input type='text' id='input'></input><span id='deg'>&deg;</span>
     is <span id='clock'></span>
   </h1>
@@ -28,7 +28,7 @@
 
     Our time keeping devices already depend crudely on our location via <a
       href='http://en.wikipedia.org/wiki/Time_zone'>time zones</a>, but
-    that can lead to errors of up to an hour!  If we had 48 time zone
+    that can lead to errors of up to an hour!  If we had 48 time zones
     instead of 24, the error would be greatly reduced, 96 would be even
     better, and so on. If you continue down this path, you eventually just
     compute the current time as a function of <a
@@ -36,13 +36,27 @@
     and <a href='http://en.wikipedia.org/wiki/Longitude'>longitude</a>.
     Such "continuous time" is what this webpage displays.  Essentially,
     this is reverting back to <i>true solar time</i>, or what we used to
-    measure with sundials!
+    measure with <a
+      href='http://en.wikipedia.org/wiki/Sundial'>sundials</a>!
 
   </p><p>
 
-    Right now your system reports that current time is <span
+    Right now, your system reports current time as <span
       id='normal-time'>??:??:??</span> which is off by <span
-      id='error-secs'>?</span> seconds from what it should really be!
+      id='error-secs'>?</span> seconds from what it should be for your
+    given location!
+
+  </p><p>
+
+    While I'd thought about continuous time before, I was first really
+    inspired to build something after I visited <a
+      href='http://en.wikipedia.org/wiki/Jantar_Mantar_(Jaipur)'>Jantar
+      Mantar</a> in Jaipur, India and saw Samrat Yantra, the world's
+    largest sundial:
+
+  </p><p>
+
+    <img src='zachary-tatlock-samrat-yantra-sundial.jpg' />
 
   </p></div>
   <script>
