@@ -20,16 +20,29 @@
     onclick='toggle_huh()'>Huh?</button>
   <div id='huh' style='visibility: hidden;'><p>
 
-    Wall time already depends crudely on geographic location via timezone.
-    However, unless you're right in the middle of your timezone, time isn't
-    quite right for you, i.e. the sun isn't directly overhead at noon.
+    The clock on your wall is probably lying to you! For most people, the
+    sun isn't directly overhead at noon. To fix this, your clock needs to
+    diplay time based on precise geographic location.
 
   </p><p>
 
-    If we had 48 timezones instead of 24, the average error would be
-    greatly reduced. 96 would be even better, and so on. If you continue
-    down this path, you eventually just compute wall time as a function of
-    UTC and longitude which is what this webpage does.
+    Our time keeping devices already depend crudely on our location via <a
+      href='http://en.wikipedia.org/wiki/Time_zone'>time zones</a>, but
+    that can lead to errors of up to an hour!  If we had 48 time zone
+    instead of 24, the error would be greatly reduced, 96 would be even
+    better, and so on. If you continue down this path, you eventually just
+    compute the current time as a function of <a
+      href='http://en.wikipedia.org/wiki/Coordinated_Universal_Time'>UTC</a>
+    and <a href='http://en.wikipedia.org/wiki/Longitude'>longitude</a>.
+    Such "continuous time" is what this webpage displays.  Essentially,
+    this is reverting back to <i>true solar time</i>, or what we used to
+    measure with sundials!
+
+  </p><p>
+
+    Right now your system reports that current time is <span
+      id='normal-time'>??:??:??</span> which is off by <span
+      id='error-secs'>?</span> seconds from what it should really be!
 
   </p></div>
   <script>
@@ -73,7 +86,12 @@
     }
 
     function show() {
-      var l, z, t;
+      var l, z, ct, nt;
+
+      // update normal time
+      var nt = new Date();
+      elem('normal-time').innerHTML =
+        sprintf('%02d:%02d:%02d', nt.getHours(), nt.getMinutes(), nt.getSeconds());
 
       // get longitude
       if(MODE === 'LONG') {
@@ -89,10 +107,16 @@
       if(isNaN(l)) { // bogus longitude
         elem('clock').innerHTML = '??:??:??';
       } else {
-        t = con_time(l);
+        ct = con_time(l);
         elem('clock').innerHTML =
-          sprintf('%02d:%02d:%02d', t.hour, t.min, t.sec);
+          sprintf('%02d:%02d:%02d', ct.hour, ct.min, ct.sec);
       }
+
+      // update error
+      var err = Math.abs(
+        (ct.hour * 60 * 60 + ct.min * 60 + ct.sec) -
+        (nt.getHours() * 60 * 60 + nt.getMinutes() * 60 + nt.getSeconds()));
+      elem('error-secs').innerHTML = sprintf('%d', err);
     }
 
     function switch_mode(m) {
